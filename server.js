@@ -12,6 +12,7 @@ require("dotenv").config();
 //Import the routes for different endponts
 const users = require("./routes/users.js")
 const posts = require("./routes/posts.js")
+const comments = require("./routes/comments.js")
 
 
 
@@ -30,6 +31,7 @@ app.use((req, res, next) => {
 
 app.use("/users", users);
 app.use("/posts", posts);
+app.use("/comments", comments);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Book Club");

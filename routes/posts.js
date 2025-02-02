@@ -10,13 +10,17 @@ router.get("/", async (req, res) => {
     res.status(200).send(result);
   })
   .post("/", async (req, res) => {
-    let result = await Post.findOne().sort({ _id: -1 });
+    try {
+        let result = await Post.findOne().sort({ _id: -1 });
 
     if (result.post_id) req.body.post_id = result.post_id + 1;
     else result.post_id = 1;
 
     await Post.create(req.body);
     res.send(req.body);
+    } catch (err) {
+        if (err.name === 'ValidationError') return res.status(400).send(err.message);
+      }
   });
 
   module.exports = router;

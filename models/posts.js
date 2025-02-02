@@ -14,7 +14,11 @@ const postSchema = new mongoose.Schema({
         required: true,
         message: "Title is required, cannot be empty.",
       },
-    post:String,
+      post: {
+        type: String,
+        required: true,
+        message: "Title is required, cannot be empty.",
+      },
     stars:Number,
 },
 { versionKey: false }
