@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
     let result = await User.findOne().sort({ _id: -1 });
 
     if (result.user_id) req.body.user_id = result.user_id + 1;
-    else result.user_id = 1;
+    else req.body.user_id = 1;
 
     await User.create(req.body);
     res.send(req.body);
@@ -27,6 +27,5 @@ router.patch("/:id", async (req, res) => {
     res.send("No user found with that Id!!");
   }
 });
-
 
 module.exports = router;

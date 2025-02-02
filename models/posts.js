@@ -1,15 +1,27 @@
 const mongoose=require("mongoose")
 
 const postSchema = new mongoose.Schema({
-    post_id:Number,
-    user_id:Number,
-    title:String,
-    Review:String,
+    post_id:{
+        type: Number,
+        required: true,
+      },
+    user_id:{
+        type: Number,
+        required: true,
+      },
+    title: {
+        type: String,
+        required: true,
+        message: "Title is required, cannot be empty.",
+      },
+    post:String,
     stars:Number,
 },
 { versionKey: false }
 )
 
-const User = mongoose.model("Post", userSchema)
+postSchema.index({ post_id: 1 });
+
+const Post = mongoose.model("Post", postSchema)
 
 module.exports=Post;
