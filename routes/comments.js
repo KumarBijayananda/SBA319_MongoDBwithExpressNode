@@ -21,19 +21,16 @@ router.get("/", async (req, res) => {
     } catch (err) {
         if (err.name === 'ValidationError') return res.status(400).send(err.message);
       }
-  })
-  .delete("/:id", async (req, res) => {
-    try {
-        const commentToDel = await Comment.findOne({ comment_id: req.params.id });
+  });
+  
+  router.delete("/:id", async (req, res) => {
+    const commentToDel = await Comment.findOne({ comment_id: req.params.id });
     if (commentToDel) {
       await Comment.deleteOne({ comment_id: req.params.id });
       res.send(commentToDel);
     } else {
-      res.send(`No comment found with id${req.params.id}!!`);
+      res.send(`No comment found with id ${req.params.id}!!`);
     }
-    } catch (err) {
-        if (err.name === 'ValidationError') return res.status(400).send(err.message);
-      }
   });
 
 

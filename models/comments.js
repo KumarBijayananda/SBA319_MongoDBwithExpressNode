@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+//comment Schuma for comments collection
 const commentSchema = new mongoose.Schema(
   {
     comment_id:{

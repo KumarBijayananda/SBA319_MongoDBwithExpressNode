@@ -23,17 +23,15 @@ router.get("/", async (req, res) => {
       }
   })
   .delete("/:id", async (req, res) => {
-    try {
-        const postToDel = await Post.findOne({ post_id: req.params.id });
+    const postToDel = await Post.findOne({ post_id: req.params.id });
+
+    
     if (postToDel) {
       await Post.deleteOne({ post_id: req.params.id });
       res.send(postToDel);
     } else {
       res.send(`No comment found with id${req.params.id}!!`);
     }
-    } catch (err) {
-        if (err.name === 'ValidationError') return res.status(400).send(err.message);
-      }
   });
 
 

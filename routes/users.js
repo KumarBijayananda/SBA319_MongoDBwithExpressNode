@@ -5,6 +5,7 @@ const db = require("../db/conn.js");
 
 const User = require("../models/users.js");
 
+//routes to handle /users endpoints with get and post method
 router
   .get("/", async (req, res) => {
     let result = await User.find().limit(10);
@@ -18,21 +19,23 @@ router
       else req.body.user_id = 1;
 
       await User.create(req.body);
-      res.send(req.body);
+      res.status(201).send(req.body);
     } catch (err) {
       if (err.name === "ValidationError")
         return res.status(400).send(err.message);
     }
   });
 
+
+//routes to handle /users/:id endpoints with patch method
 router.patch("/:id", async (req, res) => {
   try {
     const query = await User.findOne({ user_id: req.params.id });
     if (query) {
       await User.findOneAndUpdate({ user_id: req.params.id }, req.body);
-      res.send(req.body);
+      res.status(201).send(req.body);
     } else {
-      res.send(`No user found with  id${req.params.id}!!`);
+      res.send(`No user found with  id ${req.params.id}!!`);
     }
   } catch (err) {
     if (err.name === "ValidationError")

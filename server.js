@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 
-const db = require("./db/conn.js");
+const db = require("./db/conn.js"); 
 require("dotenv").config();
 
 //Import the models for different data types

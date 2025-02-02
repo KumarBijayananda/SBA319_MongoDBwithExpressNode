@@ -1,5 +1,6 @@
 const mongoose=require("mongoose")
 
+//post Schuma for posts collection
 const postSchema = new mongoose.Schema({
     post_id:{
         type: Number,
