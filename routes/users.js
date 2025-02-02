@@ -28,14 +28,22 @@ router
 
 
 //routes to handle /users/:id endpoints with patch method
-router.patch("/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
+    const query = await User.findOne({ user_id: req.params.id });
+    if (query) {
+      res.status(200).send(query);
+    } else {
+      res.send(`No user found with  id ${req.params.id}!!`);
+    }
+})
+.patch("/:id", async (req, res) => {
   try {
     const query = await User.findOne({ user_id: req.params.id });
     if (query) {
       await User.findOneAndUpdate({ user_id: req.params.id }, req.body);
       res.status(201).send(req.body);
     } else {
-      res.send(`No user found with  id ${req.params.id}!!`);
+      res.send(`No user found with id ${req.params.id}!!`);
     }
   } catch (err) {
     if (err.name === "ValidationError")

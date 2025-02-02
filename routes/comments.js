@@ -22,8 +22,16 @@ router.get("/", async (req, res) => {
         if (err.name === 'ValidationError') return res.status(400).send(err.message);
       }
   });
-  
-  router.delete("/:id", async (req, res) => {
+
+  router.get("/:id", async (req, res) => {
+      const query = await Comment.findOne({ comment_id: req.params.id });
+      if (query) {
+        res.status(201).send(query);
+      } else {
+        res.send(`No user found with  id ${req.params.id}!!`);
+      }
+  })
+.delete("/:id", async (req, res) => {
     const commentToDel = await Comment.findOne({ comment_id: req.params.id });
     if (commentToDel) {
       await Comment.deleteOne({ comment_id: req.params.id });
