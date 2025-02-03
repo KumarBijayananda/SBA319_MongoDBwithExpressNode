@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-//user schema for users collection
+//user schema for users collection with data validation
 const userSchema = new mongoose.Schema(
   {
     user_id: {
@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema(
   { versionKey: false }
 );
 
+//indexing for user_id field for users collection
 userSchema.index({ user_id: 1 });
 
 const User = mongoose.model("User", userSchema);

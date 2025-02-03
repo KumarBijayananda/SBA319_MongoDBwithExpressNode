@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 
-//post Schuma for posts collection
+//post Schema for posts collection with data validation
 const postSchema = new mongoose.Schema({
     post_id:{
         type: Number,
@@ -25,6 +25,7 @@ const postSchema = new mongoose.Schema({
 { versionKey: false }
 )
 
+//indexing for post_id field for posts collection
 postSchema.index({ post_id: 1 });
 
 const Post = mongoose.model("Post", postSchema)

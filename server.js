@@ -29,10 +29,13 @@ app.use((req, res, next) => {
     next();
   });
 
+//Middlewares to direct routes for users, posts and comments 
 app.use("/users", users);
 app.use("/posts", posts);
 app.use("/comments", comments);
 
+
+//route for home page.
 app.get("/", (req, res) => {
   res.send("Welcome to the Book Club");
 });

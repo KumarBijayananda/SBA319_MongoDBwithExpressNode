@@ -49,7 +49,7 @@ This is a simple **Book Club API** built with **Node.js**, **Express.js**, and *
 │── package.json          # Dependencies and scripts
 ```
 
-## Technologies Used
+## Dependencies
 
 - **Node.js**
 - **Express.js**

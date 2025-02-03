@@ -6,6 +6,7 @@ const db = require("../db/conn.js");
 const Post = require("../models/posts.js");
 const Comment = require("../models/comments.js");
 
+//routes to handle /posts endpoints with get and post method
 router.get("/", async (req, res) => {
     let result = await Post.find().limit(10);
     res.status(200).send(result);
@@ -24,6 +25,7 @@ router.get("/", async (req, res) => {
       }
   });
 
+//routes to handle /posts/:id endpoints with get, patch and delete method
 router.get("/:id", async (req, res) => {
       const query = await Post.findOne({ post_id: req.params.id });
       if (query) {

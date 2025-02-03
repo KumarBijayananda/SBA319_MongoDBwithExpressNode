@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-//comment Schuma for comments collection
+//comment Schema for comments collection with data validation
 const commentSchema = new mongoose.Schema(
   {
     comment_id:{
@@ -24,6 +24,7 @@ const commentSchema = new mongoose.Schema(
   { versionKey: false }
 );
 
+//indexing for comment_id field for comments collection
 commentSchema.index({ comment_id: 1 });
 
 const Comment = mongoose.model("Comment", commentSchema);
